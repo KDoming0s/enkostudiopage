@@ -1,0 +1,25 @@
+{
+  "name": "enko-portfolio",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@emailjs/browser": "^3.11.0",
+    "lucide-react": "^0.263.1",
+    "next": "13.4.19",
+    "react": "^18",
+    "react-dom": "^18"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10",
+    "eslint": "^8",
+    "eslint-config-next": "13.4.19",
+    "postcss": "^8",
+    "tailwindcss": "^3"
+  }
+}
