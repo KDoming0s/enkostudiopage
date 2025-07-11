@@ -2,18 +2,12 @@
 
 import React, { useState, useRef, useEffect } from 'react';
 import { Moon, Sun, User, Code, Mail, ChevronDown, Send } from 'lucide-react';
-import emailjs from '@emailjs/browser';
 
 export default function Home() {
   const [isDarkMode, setIsDarkMode] = useState(true);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState('');
   const form = useRef(null);
-
-  // Initialize EmailJS
-  useEffect(() => {
-    emailjs.init('cWok2-a98ILsFqGHU');
-  }, []);
 
   const toggleTheme = () => {
     setIsDarkMode(!isDarkMode);
@@ -26,22 +20,14 @@ export default function Home() {
     setIsSubmitting(true);
     setSubmitStatus('');
 
+    // Simulando envio de email
     try {
-      const result = await emailjs.sendForm(
-        'service_69nuzya', // Substitua pelo seu Service ID
-        'template_1eye93f', // Substitua pelo seu Template ID
-        form.current,
-        'cWok2-a98ILsFqGHU'
-      );
-      
-      console.log('Email enviado com sucesso:', result.text);
+      await new Promise(resolve => setTimeout(resolve, 2000));
       setSubmitStatus('success');
       form.current.reset();
-      
       setTimeout(() => setSubmitStatus(''), 5000);
     } catch (error) {
       setSubmitStatus('error');
-      console.error('Erro ao enviar email:', error);
     } finally {
       setIsSubmitting(false);
     }
@@ -106,35 +92,6 @@ export default function Home() {
     ? 'bg-gray-800 border-gray-700' 
     : 'bg-white border-gray-200';
 
-  // SEO: Adicionar dados estruturados (CORRIGIDO)
-  useEffect(() => {
-    const structuredData = {
-      "@context": "https://schema.org",
-      "@type": "Organization",
-      "name": "ENKO Studio",
-      "url": "https://enkostudios.com",
-      "logo": "https://enkostudios.com/logo.png",
-      "description": "Creative digital studio specializing in UI/UX design, web development, and brand identity.",
-      "contactPoint": {
-        "@type": "ContactPoint",
-        "email": "henkoworkspace@gmail.com",
-        "contactType": "customer service",
-        "availableLanguage": "English"
-      }
-    };
-
-    const script = document.createElement('script');
-    script.type = 'application/ld+json';
-    script.text = JSON.stringify(structuredData);
-    document.head.appendChild(script);
-
-    return () => {
-      if (document.head.contains(script)) {
-        document.head.removeChild(script);
-      }
-    };
-  }, []); // Dependency array vazia - executa apenas uma vez
-
   return (
     <>
       {/* Estilos inline para fontes */}
@@ -157,10 +114,11 @@ export default function Home() {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="flex justify-between items-center py-4">
                 <div className="flex items-center space-x-2">
-                  <div className="w-8 h-8 bg-gradient-to-br from-purple-400 to-cyan-400 rounded-lg"></div>
-                  <h1 className={`text-xl pixel-font ${isDarkMode ? 'text-purple-300' : 'text-purple-700'}`}>
-                    ENKO <span className="text-blue-300">Studio</span>
-                  </h1>
+                  <svg width="197" height="38" viewBox="0 0 197 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="196.509" height="37.4043" rx="11.9054" fill="#572AA4" fill-opacity="0.5"/>
+                    <path d="M105.858 25.808V24.614H104.664V23.42H107.052V24.614H110.634V22.226H105.858V21.032H104.664V18.644H105.858V17.45H111.828V18.644H113.022V19.838H110.634V18.644H107.052V21.032H111.828V22.226H113.022V24.614H111.828V25.808H105.858ZM117.798 25.808V18.644H115.41V17.45H122.574V18.644H120.186V25.808H117.798ZM124.962 25.808V24.614H123.768V17.45H126.156V24.614H129.738V17.45H132.126V24.614H130.932V25.808H124.962ZM133.32 25.808V17.45H139.29V18.644H140.484V19.838H141.678V23.42H140.484V24.614H139.29V25.808H133.32ZM135.708 24.614H138.096V23.42H139.29V19.838H138.096V18.644H135.708V24.614ZM144.066 25.808V24.614H146.454V18.644H144.066V17.45H151.23V18.644H148.842V24.614H151.23V25.808H144.066ZM153.618 25.808V24.614H152.424V18.644H153.618V17.45H159.588V18.644H160.782V24.614H159.588V25.808H153.618ZM154.812 24.614H158.394V18.644H154.812V24.614ZM163.17 25.808V24.614H161.976V23.42H164.364V24.614H167.946V22.226H163.17V21.032H161.976V18.644H163.17V17.45H169.14V18.644H170.334V19.838H167.946V18.644H164.364V21.032H169.14V22.226H170.334V24.614H169.14V25.808H163.17Z" fill="#B3EDEC"/>
+                    <path d="M22.5498 27.4576V10.491H39.5163V12.9148H27.3974V17.7624H37.0925V20.1862H27.3974V25.0338H39.5163V27.4576H22.5498ZM41.9401 27.4576V10.491H46.7877V12.9148H49.2115V15.3386H51.6353V17.7624H54.0591V10.491H58.9066V27.4576H54.0591V22.61H51.6353V20.1862H49.2115V17.7624H46.7877V27.4576H41.9401ZM61.3304 27.4576V10.491H66.178V17.7624H68.6018V15.3386H71.0256V12.9148H73.4494V10.491H78.2969V12.9148H75.8732V15.3386H73.4494V17.7624H71.0256V20.1862H73.4494V22.61H75.8732V25.0338H78.2969V27.4576H71.0256V25.0338H68.6018V22.61H66.178V27.4576H61.3304ZM83.1445 27.4576V25.0338H80.7207V12.9148H83.1445V10.491H95.2635V12.9148H97.6873V25.0338H95.2635V27.4576H83.1445ZM85.5683 25.0338H92.8397V12.9148H85.5683V25.0338Z" fill="#E89295"/>
+                  </svg>
                 </div>
                 <div className="flex items-center space-x-6">
                   <button 
@@ -300,7 +258,7 @@ export default function Home() {
             </div>
           </section>
 
-          {/* Contact Section - CORRIGIDO */}
+          {/* Contact Section */}
           <section id="contact" className="py-20 px-4">
             <div className="max-w-4xl mx-auto">
               <div className="text-center mb-16">
@@ -351,7 +309,7 @@ export default function Home() {
                   </div>
                 </div>
 
-                {/* Contact Form - CORRIGIDO */}
+                {/* Contact Form */}
                 <div className={`rounded-xl p-8 ${cardClasses} border`}>
                   <h3 className={`text-lg pixel-font mb-6 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
                     Send us a Message
